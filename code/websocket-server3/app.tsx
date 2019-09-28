@@ -68,6 +68,7 @@ const server3 = ws3.createServer(connect => {
 function broadcast3 (msg) {
     //server3.connections; //表示所有的用户
     server3.connections.forEach(item => {
+        //send方法不接受对象的传递方式，以下把对象转换成字符串形式传递
         item.send(JSON.stringify(msg));
     })
 }

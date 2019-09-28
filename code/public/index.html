@@ -39,11 +39,18 @@
       })
 
       //接受消息
-      socket.addEventListener("message", function(e){
-        console.log("e",e);
+      socket.addEventListener("message", function({ data: tempData } = {}){
+        var data = JSON.parse(tempData);
         var currentDiv = document.createElement('div');
-        currentDiv.innerText = e.data;
-
+        if(data.type == 1){
+          currentDiv.style.color = "red";
+        }else if(data.type == 3) {
+          currentDiv.style.color = "green";
+        }else {
+          currentDiv.style.color = "blue";
+        }
+        
+        currentDiv.innerText = `${data.msg} ${data.time}`;
         div.appendChild(currentDiv);
       })
 
